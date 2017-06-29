@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>aLaRedonda</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="cards-bg">
+        <ion-card-content>     
+            <ion-card-title>
+                Detalle Noticia {{lNot?.titulo}}
+            </ion-card-title>
+        </ion-card-content>  
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+
+        <ion-card no-padding>
+            <ion-list>
+                <ion-item>
+                    <ion-label color="primary" >Titulo: {{lNot?.titulo}}</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail >   
+                        <img *ngIf="lNot?.foto!==null" width="95" height="95" src="http://localhost:8000/imagenes/{{lNot?.foto}}"/>
+                        <img *ngIf="lNot?.foto===null" width="95" height="95" src="http://localhost:8000/imagenes/sinimagen_.jpg"/>
+                    </ion-thumbnail>
+
+                </ion-item>
+                <ion-item>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+                                {{lNot?.contenido}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" >Publicado el: {{lNot?.fecha_publicacion}}</ion-label>
+
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" >Categoria: {{lNot?.categoria}}</ion-label>
+                </ion-item>
+                <button ion-button clear item-right (click)="cancelar()"><ion-icon name="close-circle"></ion-icon>Cancelar</button>
+            </ion-list>    
+        </ion-card>
+
+</ion-content>

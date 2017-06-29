@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Medellin Times Mobile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg"> 
+    <ion-card no-padding>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <ion-card-header text-center>
+            <strong>Noticias</strong>
+        </ion-card-header>
+        <ion-card-content>     
+              <ion-list>
+                <div *ngFor="let item of listaNot">
+                    <ion-item  *ngIf="this.long > 0">
+                        <ion-thumbnail >   
+                            <img *ngIf="item.foto!==null" width="95" height="95" src="http://localhost:8000/imagenes/{{item.foto}}"/>
+                            <img *ngIf="item.foto===null" width="95" height="95" src="http://localhost:8000/imagenes/sinimagen_.jpg"/>
+                        </ion-thumbnail>
+                        <p>Titulo: {{item.titulo}}</p>
+                        <p>Publicado el {{item.fecha_publicacion}}</p>
+                        <button ion-button clear item-right (click)="verDetalle(item)"><ion-icon name="eye"></ion-icon>Detallar</button>
+                    </ion-item>
+                </div>  
+            </ion-list>
+            <ion-list *ngIf="this.long <= 0" >
+                <p>No Hay Producto registrado!</p>
+            </ion-list>
+        </ion-card-content>  
+    </ion-card>
+</ion-content>
